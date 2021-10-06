@@ -4,19 +4,19 @@ class ProductRow extends Component {
   getBadgeClass() {
     let badgeClass = "badge m-2 badge-pill ";
     badgeClass +=
-      this.props.children.amount !== 0 ? "badge-danger" : "badge-warning";
+      this.props.productRow.amount !== 0 ? "badge-danger" : "badge-warning";
     return badgeClass;
   }
 
   deactiveButton() {
-    return this.props.children.amount === 0;
+    return this.props.productRow.amount === 0;
   }
 
   render() {
     return (
       <tr>
-        <td>{this.props.children.name}</td>
-        <td>{this.props.children.price}</td>
+        <td>{this.props.productRow.name}</td>
+        <td>{this.props.productRow.price}</td>
         <td>
           <button
             className="btn btn-primary btn-sm m-1"
@@ -34,7 +34,7 @@ class ProductRow extends Component {
         </td>
         <td>
           <span className={this.getBadgeClass()}>
-            {this.props.children.amount}
+            {this.props.productRow.amount}
           </span>
         </td>
       </tr>
