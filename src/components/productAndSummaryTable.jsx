@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ProductTable from "./productTable";
-import ShoppingChart from "./shoppingChart";
+import ShoppingCart from "./shoppingCart";
 
 class ProductAndSummaryTable extends Component {
   state = {
@@ -21,6 +21,14 @@ class ProductAndSummaryTable extends Component {
     this.setState({ products: products }); // set the state with the products clone
   };
 
+  handleEmptyCart = () => {
+    const products = this.state.products.map((p) => {
+      p.amount = 0;
+      return p;
+    });
+    this.setState({ products: products });
+  };
+
   render() {
     return (
       <div>
@@ -29,9 +37,10 @@ class ProductAndSummaryTable extends Component {
           products={this.state.products}
           onAddDelete={this.handleAddDelete}
         />
-        <ShoppingChart
+        <ShoppingCart
           products={this.state.products}
           onAddDelete={this.handleAddDelete}
+          onEmpty={this.handleEmptyCart}
         />
       </div>
     );
