@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import ProductTable from "./productTable";
 import ShoppingCart from "./shoppingCart";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import Dropdown from "react-bootstrap/Dropdown";
 
 class ProductAndSummaryTable extends Component {
   state = {
@@ -32,15 +35,29 @@ class ProductAndSummaryTable extends Component {
   render() {
     return (
       <div>
+        <div className="row align-items-center justify-content-between">
+          <h4 className="my-3">Product List</h4>
+          <Dropdown>
+            <Dropdown.Toggle variant="success" id="dropdown-cart">
+              <FontAwesomeIcon icon={faShoppingCart} />
+            </Dropdown.Toggle>
+            <Dropdown.Menu
+              align="right"
+              className="p-3"
+              style={{ width: "max-content" }}
+            >
+              <ShoppingCart
+                products={this.state.products}
+                onAddDelete={this.handleAddDelete}
+                onEmpty={this.handleEmptyCart}
+              />
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
         {/*this where we feed the props*/}
         <ProductTable
           products={this.state.products}
           onAddDelete={this.handleAddDelete}
-        />
-        <ShoppingCart
-          products={this.state.products}
-          onAddDelete={this.handleAddDelete}
-          onEmpty={this.handleEmptyCart}
         />
       </div>
     );

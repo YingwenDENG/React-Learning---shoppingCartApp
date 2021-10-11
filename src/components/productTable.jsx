@@ -5,7 +5,6 @@ class ProductTable extends Component {
   render() {
     return (
       <React.Fragment>
-        <h4 className="my-3">Product List</h4>
         <table className="table">
           <thead>
             <tr>
